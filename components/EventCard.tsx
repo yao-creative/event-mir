@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function EventCard() {
   return (
-    <div className="max-w-md mx-auto shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto shadow-lg rounded-lg overflow-hidden bg-gray-900">
       <div className="relative h-48">
         <Image
           src="/eventPoster.webp"
@@ -24,7 +24,26 @@ export default function EventCard() {
             Join
           </button>
         </div>
-    
+        <div className="space-y-1">
+          <div className="flex items-center space-x-2">
+            <Image
+              src="/fibaLogo.jpg" // Replace with the actual avatar URL
+              alt="Organizer Avatar"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+            <div className="flex flex-col">
+              <p className="font-bold text-lg">FIBA (International Basketball Federation)</p>
+              <p className="text-sm flex items-center">
+                <span>@FIBA</span>
+                <span className='text-green-500 ml-1'>✔️</span> 
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        
       </div>
     </div>
   )

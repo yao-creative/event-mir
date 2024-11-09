@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Page() {
   return (
-    <div className="max-w-md mx-auto shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto shadow-lg rounded-lg overflow-hidden bg-gray-900">
       <div className="relative h-48">
         <Image
           src="/eventPoster.webp"

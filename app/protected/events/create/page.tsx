@@ -14,14 +14,14 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 export default function EventForm() {
   const [event, setEvent] = useState<Event>({
     id: 0,
-    userid: "",
-    datecreated: new Date().toISOString(),
-    dateofevent: "",
+    user_name: "",
+    created_at: new Date().toISOString(),
+    event_date: "",
     title: "",
     description: "",
-    addressurl: "",
-    addresstitle: "",
-    organizerid: "",
+    address_url: "",
+    address_title: "",
+    organization_name: "",
   });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
@@ -35,14 +35,14 @@ export default function EventForm() {
         .from("events")
         .insert([
           {
-            userid: event.userid,
-            datecreated: event.datecreated,
-            dateofevent: event.dateofevent,
+            user_name: event.user_name,
+            created_at: event.created_at,
+            event_date: event.event_date,
             title: event.title,
             description: event.description,
-            addressurl: event.addressurl,
-            addresstitle: event.addresstitle,
-            organizerid: event.organizerid,
+            address_url: event.address_url,
+            address_title: event.address_title,
+            organization_name: event.organization_name,
           },
         ])
         .single();
@@ -52,14 +52,14 @@ export default function EventForm() {
       setSuccess(true);
       setEvent({
         id: 0,
-        userid: "",
-        datecreated: new Date().toISOString(),
-        dateofevent: "",
+        user_name: "",
+        created_at: new Date().toISOString(),
+        event_date: "",
         title: "",
         description: "",
-        addressurl: "",
-        addresstitle: "",
-        organizerid: "",
+        address_url: "",
+        address_title: "",
+        organization_name: "",
       });
     } catch (error: any) {
       setError(error.message);
@@ -76,20 +76,20 @@ export default function EventForm() {
         <form onSubmit={createEvent} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="userid">User ID</Label>
+              <Label htmlFor="user_name">User Name</Label>
               <Input
-                id="userid"
-                value={event.userid}
-                onChange={(e) => setEvent({ ...event, userid: e.target.value })}
+                id="user_name"
+                value={event.user_name}
+                onChange={(e) => setEvent({ ...event, user_name: e.target.value })}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="organizerid">Organizer ID</Label>
+              <Label htmlFor="organization_name">Organization Name</Label>
               <Input
-                id="organizerid"
-                value={event.organizerid}
-                onChange={(e) => setEvent({ ...event, organizerid: e.target.value })}
+                id="organization_name"
+                value={event.organization_name}
+                onChange={(e) => setEvent({ ...event, organization_name: e.target.value })}
                 required
               />
             </div>
@@ -117,20 +117,20 @@ export default function EventForm() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="dateofevent">Date of Event</Label>
+              <Label htmlFor="event_date">Date of Event</Label>
               <Input
-                id="dateofevent"
+                id="event_date"
                 type="date"
-                value={event.dateofevent}
-                onChange={(e) => setEvent({ ...event, dateofevent: e.target.value })}
+                value={event.event_date}
+                onChange={(e) => setEvent({ ...event, event_date: e.target.value })}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="datecreated">Date Created</Label>
+              <Label htmlFor="created_at">Date Created</Label>
               <Input
-                id="datecreated"
-                value={event.datecreated}
+                id="created_at"
+                value={event.created_at}
                 readOnly
                 disabled
               />
@@ -138,22 +138,22 @@ export default function EventForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="addresstitle">Address Title</Label>
+            <Label htmlFor="address_title">Address Title</Label>
             <Input
-              id="addresstitle"
-              value={event.addresstitle}
-              onChange={(e) => setEvent({ ...event, addresstitle: e.target.value })}
+              id="address_title"
+              value={event.address_title}
+              onChange={(e) => setEvent({ ...event, address_title: e.target.value })}
               required
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="addressurl">Address URL</Label>
+            <Label htmlFor="address_url">Address URL</Label>
             <Input
-              id="addressurl"
+              id="address_url"
               type="url"
-              value={event.addressurl}
-              onChange={(e) => setEvent({ ...event, addressurl: e.target.value })}
+              value={event.address_url}
+              onChange={(e) => setEvent({ ...event, address_url: e.target.value })}
               required
             />
           </div>

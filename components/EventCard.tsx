@@ -28,7 +28,7 @@ export default function EventCard({ data }: Props) {
           <div className="space-y-1">
             <p className="text-sm flex items-center text-muted-foreground">
               <CalendarIcon className="mr-1 h-4 w-4" />
-              {new Date(data.dateofevent).toLocaleDateString()}
+              {new Date(data.event_date).toLocaleDateString()}
             </p>
             <h2 className="text-2xl font-bold truncate">{data.title}</h2>
           </div>
@@ -51,12 +51,12 @@ export default function EventCard({ data }: Props) {
         <div className="flex items-center space-x-2">
           <Avatar>
             <AvatarImage src="/fibaLogo.jpg" alt="Organizer Avatar" />
-            <AvatarFallback>{data.organizerid.slice(0, 2).toUpperCase()}</AvatarFallback>
+            <AvatarFallback>{data.organization_name.slice(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <p className="font-bold truncate">{data.organizerid}</p>
+            <p className="font-bold truncate">{data.organization_name}</p>
             <p className='text-sm flex items-center text-muted-foreground'>
-              <span>@{data.organizerid}</span> 
+              <span>@{data.user_name}</span> 
               <CheckCircleIcon className="ml-1 h-4 w-4 text-blue-500" />
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function EventCard({ data }: Props) {
       <CardFooter>
         <p className="text-sm flex items-center text-muted-foreground truncate">
           <MapPinIcon className="mr-1 h-4 w-4" />
-          {data.addresstitle}
+          {data.address_title}
         </p>
       </CardFooter>
     </Card>

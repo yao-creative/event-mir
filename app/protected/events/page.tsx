@@ -8,18 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { PlusCircle, SearchIcon } from 'lucide-react'
 import EventList from "@/components/ui/events/EventList"
-
-interface Event {
-  id: number
-  userid: string
-  datecreated: string
-  dateofevent: string
-  title: string
-  description: string
-  addressurl: string
-  addresstitle: string
-  organizerid: string
-}
+import { Event } from "@/app/interfaces/event";
 
 export default function HomePage() {
   const [events, setEvents] = useState<Event[]>([])

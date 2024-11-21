@@ -1,11 +1,13 @@
 export interface Event {
   id: number;
-  userid: string;
-  datecreated: string;
-  dateofevent: string;
+  user_name: string;
+  created_at: string;
+  event_date: string;
   title: string;
   description: string;
-  addressurl: string;
-  addresstitle: string;
-  organizerid: string;
+  address_url: string;
+  address_title: string;
+  organization_name: string;
 }
+
+

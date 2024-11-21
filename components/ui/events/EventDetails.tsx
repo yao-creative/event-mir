@@ -10,18 +10,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CalendarIcon, MapPinIcon, UserIcon, ClockIcon, CheckCircleIcon } from 'lucide-react'
 import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 import * as Separator from '@radix-ui/react-separator'
+import { Event } from "@/app/interfaces/event";
 
-interface Event {
-  id: number
-  userid: string
-  datecreated: string
-  dateofevent: string
-  title: string
-  description: string
-  addressurl: string
-  addresstitle: string
-  organizerid: string
-}
 
 export default function EventDetails({ id }: { id: number }) {
   const [event, setEvent] = useState<Event | null>(null)
@@ -78,8 +68,8 @@ export default function EventDetails({ id }: { id: number }) {
   }
 
   return (
-    <Card className="max-w-2xl mx-auto mt-8">
-      <AspectRatio.Root ratio={16 / 9}>
+    <Card className="max-w-md mx-auto overflow-hidden">
+      <AspectRatio.Root>
         <Image
           src="/eventPoster.webp"
           alt="Event Poster"
@@ -88,12 +78,12 @@ export default function EventDetails({ id }: { id: number }) {
           className="rounded-t-lg"
         />
       </AspectRatio.Root>
-      <CardHeader>
+      <CardHeader className="space-y-1">
         <div className="flex justify-between items-start">
           <div className="space-y-1">
             <p className="text-sm flex items-center text-muted-foreground">
               <CalendarIcon className="mr-2 h-4 w-4" />
-              {new Date(event.dateofevent).toLocaleDateString()}
+              {new Date(event.event_date).toLocaleDateString()}
             </p>
             <CardTitle className="text-2xl font-bold">{event.title}</CardTitle>
           </div>
@@ -104,12 +94,12 @@ export default function EventDetails({ id }: { id: number }) {
         <div className="flex items-center space-x-2">
           <Avatar>
             <AvatarImage src="/fibaLogo.jpg" alt="Organizer Avatar" />
-            <AvatarFallback>{event.organizerid.slice(0, 2).toUpperCase()}</AvatarFallback>
+            <AvatarFallback>{event.organization_name.toUpperCase()}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <p className="font-bold">{event.organizerid}</p>
+            <p className="font-bold">{event.organization_name}</p>
             <p className='text-sm flex items-center text-muted-foreground'>
-              <span>@{event.organizerid}</span> 
+              <span>@{event.user_name}</span> 
               <CheckCircleIcon className="ml-1 h-4 w-4 text-blue-500" />
             </p>
           </div>
@@ -121,9 +111,9 @@ export default function EventDetails({ id }: { id: number }) {
         <Separator.Root className="h-[1px] bg-border" />
         <div className="space-y-2">
           <h3 className="text-lg font-semibold">Address</h3>
-          <a href={event.addressurl} target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-500 hover:underline">
+          <a href={event.address_url} target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-500 hover:underline">
             <MapPinIcon className="mr-2 h-4 w-4" />
-            {event.addresstitle}
+            {event.address_title}
           </a>
         </div>
         <Separator.Root className="h-[1px] bg-border" />
@@ -147,7 +137,7 @@ export default function EventDetails({ id }: { id: number }) {
       <CardFooter>
         <p className="text-sm flex items-center text-muted-foreground">
           <ClockIcon className="mr-2 h-4 w-4" />
-          Created on: {new Date(event.datecreated).toLocaleString()}
+          Created on: {new Date(event.event_date).toLocaleString()}
         </p>
       </CardFooter>
     </Card>

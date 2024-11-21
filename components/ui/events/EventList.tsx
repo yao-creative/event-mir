@@ -3,18 +3,8 @@ import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CalendarIcon, MapPinIcon, UserIcon } from 'lucide-react'
+import { Event } from "@/app/interfaces/event";
 
-interface Event {
-  id: number
-  userid: string
-  datecreated: string
-  dateofevent: string
-  title: string
-  description: string
-  addressurl: string
-  addresstitle: string
-  organizerid: string
-}
 
 interface EventListProps {
   events: Event[]
@@ -36,17 +26,17 @@ export default function EventList({ events }: EventListProps) {
             <p className="text-muted-foreground mb-4">{event.description}</p>
             <div className="flex items-center mb-2">
               <CalendarIcon className="mr-2 h-4 w-4" />
-              <span>{new Date(event.dateofevent).toLocaleDateString()}</span>
+              <span>{new Date(event.event_date).toLocaleDateString()}</span>
             </div>
             <div className="flex items-center mb-2">
               <MapPinIcon className="mr-2 h-4 w-4" />
-              <a href={event.addressurl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                {event.addresstitle}
+              <a href={event.address_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                {event.address_title}
               </a>
             </div>
             <div className="flex items-center">
               <UserIcon className="mr-2 h-4 w-4" />
-              <span>Organizer ID: {event.organizerid}</span>
+              <span>Organizer ID: {event.organization_name}</span>
             </div>
           </CardContent>
           <CardFooter>

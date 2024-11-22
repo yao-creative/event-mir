@@ -1,0 +1,18 @@
+name: Mirror Update
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours
+  workflow_dispatch:  # Allows manual triggers
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Mirror Update
+        run: |
+          git remote add upstream https://github.com/BryanTheLai/event-app-supabase
+          git fetch upstream --prune
+          git push origin --mirror
